@@ -1,0 +1,50 @@
+html{
+    scroll-behavior: auto;
+}
+
+.fill{
+    background-color: #F9F9F9;
+}
+
+#yukari{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:70px;
+    height:70px;
+    text-align:center;
+    line-height: 70px;
+    border-radius:35px;
+    transition:all .3s ease;
+    z-index:999
+}
+#yukari i{
+    color:#fff;
+    font-size:20px;
+}
+
+#search{
+    font-size: 25px;
+}
+
+.scrollup {
+
+    width: 40px;
+    
+    height: 40px;
+    
+    position: fixed;
+    
+    bottom: 50px;
+    
+    right: 100px;
+    
+    display: none;
+    
+    text-indent: -9999px;
+    
+    background: url('icon_top.png') no-repeat;
+    
+    background-color: #000;
+    
+}

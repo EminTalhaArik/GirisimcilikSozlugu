@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="container col-10 bg-white border py-2 rounded-top mt-4">
+    <div class="my-3">
+        <p class="fw-lighter"> Toplam <b class="fw-semibold text-secondary"> {{terms|length}} </b> Adet Bulundu! </p>
+    </div>
+</div>
+<div class="container col-10 bg-white border border-top-0 py-4 rounded-bottom mb-4">
+
+    {% for term in terms %}        
+            
+        {% if term.is_active %}
+            
+            {% include 'sozluk/partials/_term.html' %}      
+
+        {% endif %}
+
+    {% endfor %}
+
+</div>

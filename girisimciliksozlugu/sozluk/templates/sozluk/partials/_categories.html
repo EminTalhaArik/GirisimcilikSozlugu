@@ -1,0 +1,22 @@
+{% load static %}
+
+<div class="container bg-white border py-2 rounded text-center my-4 shadow-sm col-10">
+    <div class="row row-cols-auto justify-content-evenly list-group-horizontal">
+
+        <div class="col border px-3 py-1 my-2 rounded">
+            <a href="{% url 'index' %}" class="list-group-item list-group-item-action" aria-current="true">
+                Tümü
+            </a>
+        </div>
+
+        {% for category in categories %}
+            
+            <a href = "{% url 'category' category.slug %}" class="btn btn-lg btn-sm border px-3 py-1 my-2 rounded text-center fs-6 ">
+                {{category.name}}
+            </a>
+
+        {% endfor %}
+
+
+    </div>
+</div>
