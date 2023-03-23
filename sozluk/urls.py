@@ -6,6 +6,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("index", views.index),
     path("tumu", views.index),
-    path("<slug:slug>", views.index, name="category")
-
+    path("<slug:slug>", views.index, name="category"),
+    path('hakkimizda/', views.about, name="about")
 ]

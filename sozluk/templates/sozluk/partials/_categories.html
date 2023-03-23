@@ -10,10 +10,29 @@
         </div>
 
         {% for category in categories %}
+
+            {% if category.slug == "tumu" %}
             
-            <a href = "{% url 'category' category.slug %}" class="btn btn-lg btn-sm border px-3 py-1 my-2 rounded text-center fs-6 ">
-                {{category.name}}
-            </a>
+                <a href = "{% url 'category' category.slug %}" class="btn btn-lg btn-sm border px-3 py-1 my-2 rounded text-center fs-6 text-white bg-primary">
+                    {{category.name}}
+                </a>
+
+            {% elif category.slug == slug %}
+            
+                <a href = "{% url 'category' category.slug %}" class="btn btn-lg btn-sm border px-3 py-1 my-2 rounded text-center fs-6 text-white bg-primary">
+                    {{category.name}}
+                </a>
+            
+            {% else %}
+            
+                <a href = "{% url 'category' category.slug %}" class="btn btn-lg btn-sm border px-3 py-1 my-2 rounded text-center fs-6">
+                    {{category.name}}
+                </a>
+
+
+            {% endif %}
+
+            
 
         {% endfor %}
 

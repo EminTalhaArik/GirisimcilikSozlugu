@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from os import getenv
+from os import environ
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,21 +23,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%57&y)g80=!#bugt12_*q&yt3$-$u3+8973!1n&d&(irp21an$'
-#SECRET_KEY = getenv('SECRET_KEY')
+SECRET_KEY = getenv('SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = getenv('IS_DEVELOPMENT', True)
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    #getenv('APP_HOST')
+    getenv('APP_HOST', 'localhost'),
+    'girisimciliksozlugu.com',
+    'www.girisimciliksozlugu.com',
+    'localhost',
+    '127.0.0.1'
 ]
-
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'sozluk',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,10 +47,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,13 +87,17 @@ WSGI_APPLICATION = 'girisimciliksozlugu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'girisimciliksozlugu',
+        'USER': 'admin',
+        'PASSWORD': 'GirisimcilikSozlugu09123.',
+        'HOST': 'girisimcilik-sozlugu.cmgmtt59lyi2.us-east-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -134,10 +144,26 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_ROOT = BASE_DIR / "uploads"
-MEDIA_URL = "/images/"
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AWS_ACCESS_KEY_ID = 'AKIA5QUZMTOVTSKTHJGM'
+
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'girisimciliksozlugu'
+
+AWS_S3_FILE_OVERWRITE = False
+
+AWS_DEFAULT_ACL = None
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_S3_REGION_NAME = "us-west-2"
+
+AWS_S3_ADDRESSING_STYLE = "virtual"

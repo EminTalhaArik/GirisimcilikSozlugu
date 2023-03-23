@@ -3,6 +3,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from sozluk.models import Term, Category
 from django.db.models import Q
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -21,12 +22,17 @@ def index(request, slug=""):
     else:
         terms = Term.objects.all().order_by('title')
 
-    print(Term.objects.all().order_by('title').values())
-
     context = {
         "terms": terms,
-        "categories": Category.objects.all
+        "categories": Category.objects.all().order_by('name'),
+        "slug": slug
     }
 
     return render(request, "sozluk/index.html", context)
 
+def about(request):
+    return render(request, "sozluk/about.html")
+
+
+def view_404(request, exception=None):
+    return redirect('/') # or redirect('name-of-index-url')

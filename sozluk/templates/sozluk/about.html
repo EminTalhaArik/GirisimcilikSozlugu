@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Terimler{% endblock title %}
+
+{% block content %}
+
+<div class="px-4 pt-3 pb-3 my-5 text-center">
+    <h1 class="display-6 fw-bold">Girişimcilik Sözlüğü</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="text-secondary fs-6 mb-4">Girişimcilik Sözlüğü, Diici tarafından 2020 yılında girişimcilik ekosisteminde sıklıkla karşılaştığımız girişimcilik terimlerini herkese daha ulaşılabilir kılmak için oluşturulmuş bir projedir.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="{% url 'index' %}" target="_blank" 
+        rel="noreferrer noopener" class="btn btn-primary btn-lg btn-sm px-3 py-2 text-white">Görüntüle</a>
+  </div>
+    </div>
+</div>
+
+
+<!--Girişimcilik Sözlüğü Tanım-->
+<div class="container col-xxl-8 px-4 pb-3">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{% static 'img/diici-logo.png' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-6 fw-bold lh-1 mb-3">Diici</h1>
+        <p class="text-secondary fs-6">Türk girişimcilerimize inanarak çıktığımız bu yolda, girişimcilik ekosisteminin daha fazla gelişmesini sağlamak, ekosisteme hizmet ederek kaliteli girişimler yetiştirmek ve sürdürülebilir olmalarını sağlamak adına 2019 yılından itibaren canla başla çalışıyoruz. Değişime ve gelişime açık bir marka olarak öğrenmeye ve öğretmeye devam ediyoruz.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="https://diici.com/" target="_blank" 
+            rel="noreferrer noopener" class="btn btn-primary btn-lg btn-sm px-3 py-2 text-white">Görüntüle</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!--Diici Tanım-->
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-lg-6">
+        <h1 class="display-6 fw-bold lh-1 mb-3 text-warning">Teens In Innovation</h1>
+        <p class="text-secondary fs-6">Liselilerin girişimcilik ekosisteminde yaratabileceği etkinin potansiyeline inanıyor ve bu ekosistemi geliştirerek daha kaliteli, verimli ve sürdürülebilir olması için çalışıyoruz!</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="https://www.teinn.org/" target="_blank" 
+            rel="noreferrer noopener" class="btn btn-warning btn-lg btn-sm px-3 py-2 text-dark">Görüntüle</a>
+        </div>
+      </div>
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{% static 'img/teinn-logo.png' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+
+    </div>
+</div>
+
+{% endblock content %}
