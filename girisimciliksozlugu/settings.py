@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = getenv('SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = getenv('DEBUG', True)
 
 ALLOWED_HOSTS = [
     getenv('APP_HOST', 'localhost'),
@@ -88,19 +88,25 @@ WSGI_APPLICATION = 'girisimciliksozlugu.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'girisimciliksozlugu',
-        'USER': 'admin',
-        'PASSWORD': 'GirisimcilikSozlugu09123.',
-        'HOST': 'girisimcilik-sozlugu.cmgmtt59lyi2.us-east-1.rds.amazonaws.com',
-        'PORT': '3306',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': getenv('DB_NAME'),
+            'USER': getenv('DB_USER'),
+            'PASSWORD': getenv('DB_PASS'),
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+    }
 
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -137,7 +143,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-
     BASE_DIR / "static"
 
 ]
@@ -151,19 +156,3 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AWS_ACCESS_KEY_ID = 'AKIA5QUZMTOVTSKTHJGM'
-
-AWS_SECRET_ACCESS_KEY = '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'
-
-AWS_STORAGE_BUCKET_NAME = 'girisimciliksozlugu'
-
-AWS_S3_FILE_OVERWRITE = False
-
-AWS_DEFAULT_ACL = None
-
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-AWS_S3_REGION_NAME = "us-west-2"
-
-AWS_S3_ADDRESSING_STYLE = "virtual"
