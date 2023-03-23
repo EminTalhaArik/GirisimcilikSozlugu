@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 from os import getenv
 from os import environ
@@ -47,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages'
+    'storages',
+    'import_export'
 ]
 
 MIDDLEWARE = [
@@ -81,14 +83,20 @@ TEMPLATES = [
     },
 ]
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.static',
+)
+
+
 WSGI_APPLICATION = 'girisimciliksozlugu.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+IS_DEV = False
 
-if DEBUG:
+if IS_DEV:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -99,10 +107,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': getenv('DB_NAME'),
-            'USER': getenv('DB_USER'),
-            'PASSWORD': getenv('DB_PASS'),
-            'HOST': 'localhost',
+            'NAME': 'aliosman_girisimcilik_sozlugu',
+            'USER': 'aliosman_sozluk_user',
+            'PASSWORD': 'GirisimcilikSozlugu1234.',
+            'HOST': '95.173.180.21',
             'PORT': '3306',
         }
     }

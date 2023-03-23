@@ -17,7 +17,7 @@ def index(request, slug=""):
             description__icontains=search_term))
 
     elif slug != "":
-        terms = Term.objects.filter(category__slug=slug)
+        terms = Term.objects.filter(category__slug=slug).order_by('title')
 
     else:
         terms = Term.objects.all().order_by('title')

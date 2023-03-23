@@ -19,10 +19,10 @@ class Category (models.Model):
 
 class Term (models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to="terms")
+    image = models.ImageField(upload_to="terms", null=True)
     description = models.TextField()
     is_active = models.BooleanField(default=True)
-    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
+    category = models.ManyToManyField(Category)
 
     def __str__(self):
         return f"{self.title}"

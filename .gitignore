@@ -1,1 +1,5 @@
-*.sqlite3
+db.sqlite3
+.fordevnotes
+.png
+eb-virt
+staticfiles
