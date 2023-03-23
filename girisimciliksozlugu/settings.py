@@ -107,10 +107,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'aliosman_girisimcilik_sozlugu',
-            'USER': 'aliosman_sozluk_user',
-            'PASSWORD': 'GirisimcilikSozlugu1234.',
-            'HOST': '95.173.180.21',
+            'NAME': getenv("DB_NAME"),
+            'USER': getenv("DB_USER"),
+            'PASSWORD': getenv("DB_PASS"),
+            'HOST': 'localhost',
             'PORT': '3306',
         }
     }
