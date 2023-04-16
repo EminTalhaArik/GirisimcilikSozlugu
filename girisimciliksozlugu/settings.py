@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'girisimciliksozlugu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-IS_DEV = False
+IS_DEV = True
 
 if IS_DEV:
     DATABASES = {
