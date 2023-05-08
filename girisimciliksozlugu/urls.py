@@ -18,14 +18,30 @@ from django.urls import path, re_path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.static import serve
+from django.views.generic import TemplateView
 
-urlpatterns = [
-    path('yonetim/', admin.site.urls),
-    path('', include('sozluk.urls')),
-    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
-
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = (
+    [
+        path("yonetim/", admin.site.urls),
+        path("", include("sozluk.urls")),
+        path(
+            "contribute/",
+            TemplateView.as_view(template_name="forms/contribute_form.html"),
+            name="contribute",
+        ),
+        path(
+            "tabooRequest/",
+            TemplateView.as_view(template_name="forms/taboo_request_form.html"),
+            name="taboo_request",
+        ),
+        re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
+        re_path(
+            r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}
+        ),
+    ]
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

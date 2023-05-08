@@ -5,12 +5,13 @@
         <div>
             <a class="navbar-brand text-primary" href="{% url 'index' %}">Girişimcilik Sözlüğü</a>
             <a href = '{% url 'about' %}' class="btn btn-lg btn-sm p-1 px-3 mx-1 text-white bg-primary">Hakkımızda</a>
+            <a href = '{% url 'taboo_request' %}' class="btn btn-lg btn-sm p-1 px-3 mx-1 text-white bg-primary">Girişimcilik Tabusu</a>
         </div>
         
         <span class="navbar-text d-none d-lg-block fs-6">
             Girişimcilik Sözlüğümüze Terim Ekleyerek Ekosisteme Destek Ol!
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuBvHwRa68IAqALYFeDlIL4TXOBPP0RmXwJUVuS-t7vXNDzw/viewform" target="_blank" 
-            rel="noreferrer noopener" class="btn btn-primary btn-lg btn-sm mx-2" style="color: #fff;">Katkı Sağla</a>
+            <a href="{% url 'contribute' %}"
+             class="btn btn-primary btn-lg btn-sm mx-2" style="color: #fff;">Katkı Sağla</a>
         </span>
     </div>
 </nav>
